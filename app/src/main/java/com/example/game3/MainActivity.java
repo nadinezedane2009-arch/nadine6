@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -23,8 +24,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView n1, n2, n3, n4, n5, n6, num, r;
     private int n,count,n11,n22,n33,n44,n55,n66;
     private Handler handler;
+    private EditText etName;
 public static int c2=0,cr=0;
-
+private String name=" ";
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -42,12 +44,17 @@ public static int c2=0,cr=0;
         ne=findViewById(R.id.button2);
         num=findViewById(R.id.textView7);
         score = findViewById(R.id.scoreId);
+        etName = findViewById(R.id.editText1);
         count=0;
         c2=0;
         cr=0;
         num.setText(999+"");
 
+
+
         Intent scoreAc = new Intent(MainActivity.this,scoreActivity.class);
+
+
         ne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,7 +149,8 @@ public static int c2=0,cr=0;
         score.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                name = etName.getText().toString();
+                scoreAc .putExtra("NAME",name);
                 startActivity(scoreAc);
 
             }
