@@ -17,6 +17,7 @@ public class scoreActivity extends AppCompatActivity {
     private Button backb;
     private String name;
     private TextView score,game,yourname;
+    private Intent back;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,7 @@ public class scoreActivity extends AppCompatActivity {
         yourname=findViewById(R.id.textView9);
         Intent intent=getIntent();
         String name=intent.getStringExtra("NAME");
+        back = new Intent(scoreActivity.this, MainActivity.class);
 
         yourname.setText(name+"your score");
         game.setText("game"+MainActivity.c2);
@@ -36,7 +38,8 @@ public class scoreActivity extends AppCompatActivity {
         backb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               finish();
+                startActivity(back);
+                finish();
             }
         });
 

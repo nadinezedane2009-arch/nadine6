@@ -103,10 +103,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="new" />
-
-    <Button
-        android:id="@+id/scoreId"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="score" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/scoreId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="score" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+android:layout_weight="1"
+            android:text="Exit" />
+
+    </LinearLayout>
 </LinearLayout>

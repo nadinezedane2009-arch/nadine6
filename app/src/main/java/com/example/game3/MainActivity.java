@@ -1,6 +1,7 @@
 package com.example.game3;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -20,13 +22,47 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
     private Button start;
     private Button ne;
-    private Button score;
+    private Button score,exit;
     private TextView n1, n2, n3, n4, n5, n6, num, r;
     private int n,count,n11,n22,n33,n44,n55,n66;
     private Handler handler;
     private EditText etName;
+    private AlertDialog dialog;
 public static int c2=0,cr=0;
 private String name=" ";
+private void initDialog() {
+    AlertDialog.Builder  alertDialog = new
+            AlertDialog.Builder(this);
+    alertDialog.setTitle("“exit");
+            alertDialog.setMessage("“are you sure?”");
+    alertDialog.setIcon(R.drawable.alert);
+    alertDialog.setCancelable(true);
+
+    alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialogInterface, int i) {
+            finish();
+            System.exit(0);
+            dialogInterface.dismiss();
+        }
+    });
+
+    alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialogInterface, int i) {
+            dialogInterface.dismiss();
+        }
+    });
+
+    alertDialog.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialogInterface, int i) {
+            dialogInterface.dismiss();
+        }
+    });
+
+    dialog = alertDialog.create();
+}
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -44,11 +80,13 @@ private String name=" ";
         ne=findViewById(R.id.button2);
         num=findViewById(R.id.textView7);
         score = findViewById(R.id.scoreId);
+     exit= findViewById(R.id.button3);
         etName = findViewById(R.id.editText1);
         count=0;
         c2=0;
         cr=0;
         num.setText(999+"");
+        initDialog();
 
 
 
@@ -145,6 +183,15 @@ private String name=" ";
                     r.setText(count+"of 6");}
             }
 
+
+
+        });
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.show();
+
+            }
         });
         score.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,7 +199,7 @@ private String name=" ";
                 name = etName.getText().toString();
                 scoreAc .putExtra("NAME",name);
                 startActivity(scoreAc);
-
+                finish();
             }
         });
 
